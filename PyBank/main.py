@@ -63,6 +63,9 @@ def main(pFile, pDName, pFName):
         LossChange = deltaProfitList[0]
         LossMonth = ""
         LossMonth = MonthProfitDictionary[LossChange]
+#format the dollar amounts into nnnn.nn
+        netTotal = format(netTotal,'.2f')
+
 #print out the information to the command line screen.
         print("Financial Analysis")
         print('\n')
@@ -72,19 +75,22 @@ def main(pFile, pDName, pFName):
         print(f'Total: ${str(netTotal)}')
         print('\n')
 # the average change
-        averageChange = averageChange/listSize
+        averageChange = averageChange/listSize 
+        averageChange = format(averageChange,'.2f') #format the calculation into 123.11
         print(f'Average Change: ${str(averageChange)}')
         print('\n')
-#the largest profit       
+#the largest profit 
+        profitChange = format(profitChange,'.2f')
         print(f'Greatest Increase in Profits: {ProfitMonth} ($ {str(profitChange)} )')
         print('\n')
-#the greatest loss               
+#the greatest loss
+        LossChange = format(LossChange,'.2f')               
         print(f'Greatest Decrease in Profits: {LossMonth} ($ {str(LossChange)} )')
 #Write the key information to a text file.
 # start writing the key varibles and string text to our file.
 # Open the file using "write" mode. Specify the variable to hold the contents
         # Specify the file to write to
-        output_path = os.path.join("..", "", "results.txt")
+        output_path = os.path.join("", "analysis", "results.txt")
         with open(output_path, 'w') as file:
            file.write('Financial Analysis\n-------------------\nTotal Months: ')
            file.write(str(totalMonths))
